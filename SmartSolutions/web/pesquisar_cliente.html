@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Controle de Cliente</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css">
+	<script src="//assets.locaweb.com.br/locastyle/3.10.1/javascripts/locastyle.js"></script>
+	<link rel="stylesheet" type="text/css" href="//assets.locaweb.com.br/locastyle/edge/stylesheets/locastyle.css">
+	<script src="//assets.locaweb.com.br/locastyle/edge/javascripts/locastyle.js"></script>
+
+	<link rel="stylesheet" href="view/stylesheets/bootstrap.css">
+	<link rel="stylesheet" href="view/stylesheets/styles_site.css">
+	<script type="text/javascript" src="view/javascripts/jquery-1.11.2.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="views/css/estilo.css">
+    </head>
+    <body>
+        <h1>Pesquisar Cliente</h1>
+        <p>Digite: Nome completo ou Parte, OS ou Telefone</p>
+        <form name="pesquisa" action="MainController" method="post">
+
+            <input type="text" name="pesquisa" class="input"><br>
+	    <hr>
+            <input type="submit" name="btPesquisar" value="Pesquisar" class="botao btn btn-primary">
+            <input type="hidden" name="flag" value="pesquisar">
+            <input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao btn btn-danger">
+
+        </form>
+    </body>
+</html>

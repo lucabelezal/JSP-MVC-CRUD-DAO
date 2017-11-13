@@ -1,0 +1,290 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Lato|Lato');
+
+html {
+  font-family: sans-serif;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+p {
+  text-align: justify;
+}
+/*Estilo Carousel*/
+/* .carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 100%;
+  height: 650px;
+  margin: auto;
+} */
+/* .carousel-caption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 15px;
+  background: #333333;
+  background: rgba(0, 0, 0, 0.75);
+  padding-bottom: 50px;
+} */
+
+/*Fim Estilo Carousel*/
+
+/*Classe Container e Row*/
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.section {
+  display: block;
+}
+/*Fim*/
+
+/* Estilo das Imagens*/
+.mv h3 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+.img-thumbnail {
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+}
+.img-responsive {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+/* .img-responsive-logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-top: 10%;
+  margin-left: 18%;
+} */
+
+.img-responsive-service {
+  display: block;
+  max-width: 100%;
+  height: 200px;
+}
+
+
+img {
+  vertical-align: middle;
+}
+/*Fim Imagem*/
+
+/* Roda pé*/
+.section-primary {
+  background-color: #003f7f/*#337cbb*/;
+  color: #ffffff;
+}
+.section {
+  position: relative;
+  padding: 35px 0;
+}
+footer {
+  display: block;
+}
+.rede-social {
+
+  margin-top: 25%;
+}
+#servicos {
+
+  width: 100%;
+
+}
+#comment {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+hr {
+  margin-bottom: 60px;
+}
+
+input[type=submit].bt-enviar {
+  color: white;
+  background-color: #0073E8;
+  border: 1px solid #0073E8;
+  border-radius: 5px;
+  height: 40px;
+  width: 120px;
+}
+input[type=submit].bt-enviar:hover {
+  background-color: #007EFF;
+}
+/*Fim Roda pé*/
+
+/*Menu*/
+/* .cssmenu {
+padding: 0;
+margin: 0;
+border: 0;
+width: 100%;
+position: fixed;
+top: 0;
+z-index: 99;
+}
+.cssmenu ul,
+.cssmenu li {
+list-style: none;
+margin: 0;
+padding: 0;
+list-style-type: none;
+}
+.cssmenu ul {
+position: relative;
+z-index: 597;
+}
+.cssmenu ul li {
+float: left;
+min-height: 1px;
+vertical-align: middle;
+}
+.cssmenu ul li.hover,
+.cssmenu ul li:hover {
+background-color: #003f7f;
+position: relative;
+z-index: 599;
+cursor: default;
+}
+.cssmenu {
+background: rgba(0, 0, 0, 0.8);
+border-bottom: 4px solid #003f7f;
+font-family: Tahoma, Arial, sans-serif;
+font-size: 12px;
+}
+.cssmenu ul ul a {
+background: rgba(0, 0,0,0.8);
+color: #ffffff;
+border: 1px solid #003f7f;
+border-top: 0 none;
+line-height: 150%;
+padding: 16px 20px;
+font-size: 12px;
+
+}
+.cssmenu ul ul li:hover > a {
+background: #003f7f;
+color: #ffffff;
+}
+.cssmenu ul li:hover > a,
+.cssmenu ul li.active > a {
+color: #ffffff;
+}
+.cssmenu a {
+background: rgba(0, 0, 0, 0.0);
+color: #CBCBCB;
+padding: 0 20px;
+}
+.cssmenu > ul > li > a {
+line-height: 48px;
+font-size: 12px;
+outline: none;
+} */
+.btn-danger-site{
+color: #fff;
+background-color: #d9534f;
+border-color: #d43f3a;
+background-color: #d34f3a !important;
+/* margin: 5px; */
+float: right;
+margin-right: 20px;
+margin-top: 7px;
+margin-bottom: 7px;
+height: 40px;
+text-align: center !important;
+padding-top: 8px !important;
+
+}
+
+body {margin:0;}
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: #333; */
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 4px solid #003f7f;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  width: 100%;
+  position: fixed;
+  z-index: 99;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+  display: inline-block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+ul.topnav li a:hover {/* background-color: #555; */ background: rgba(0, 0, 0, 0.1);}
+
+ul.topnav li.icon {display: none;}
+
+@media screen and (max-width:680px) {
+  ul.topnav li:not(:first-child) {display: none;}
+  ul.topnav li.icon {
+    float: right;
+    display: inline-block;
+  }
+}
+
+@media screen and (max-width:680px) {
+  ul.topnav.responsive {position: relative;}
+  ul.topnav.responsive li.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  ul.topnav.responsive li {
+    float: none;
+    display: inline;
+  }
+  ul.topnav.responsive li a {
+    display: block;
+    text-align: left;
+  }
+}
+
+/*Fim Menu*/
