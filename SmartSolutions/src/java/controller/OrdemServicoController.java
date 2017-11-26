@@ -22,28 +22,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.ClienteDAO;
+import model.OrdemServicoDAO;
 
 /**
  *
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
-public class MainController extends HttpServlet {
+public class OrdemServicoController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     * @throws java.sql.SQLException
-     */
-    @SuppressWarnings("null")
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException {
+
         /**
          * Configuração do código de página para mostrar os caracteres
          * corretamente
@@ -71,27 +62,26 @@ public class MainController extends HttpServlet {
              * valores enviados pelos formulários
              */
             // Objetos
-            Cliente cliente = new Cliente();
-            ClienteDAO clienteDAO = new ClienteDAO();
-            ArrayList<Cliente> listaCliente = new ArrayList();
-            List<Cliente> clientes;
-            List<Cliente> pesquisaCliente;
-            List<Cliente> clienteAlteraDAO;
+            OrdemServico ordemServico = new OrdemServico();
+            OrdemServicoDAO ordemServicoDAO = new OrdemServicoDAO();
+            ArrayList<OrdemServico> listaOrdemServico = new ArrayList();
+            List<OrdemServico> ordemServicos;
+            List<OrdemServico> pesquisaOrdemServicos;
+            List<OrdemServico> ordemServicoAlteraDAO;
             Map<String, String> campos;
 
             // Variáveis dos formulários
-            int id;
-            String nome;
-            String cnpj;
-            String telefone;
-            String estado;
-            String cidade;
-            String bairro;
-            String cep;
-            String endereco;
-            String usuario;
-            String email;
-            String senha;
+            int idOS;
+            String dataOS;
+            String tipoOS;
+            String situacaoOS;
+            String nomeOS;
+            String cnpjOS;
+            String telefoneOS;
+            String enderecoOS;
+            String emailOS;
+            String valorOS;
+            String servicoOS;
 
             // Variáveis para tratamento das mensagens de erro
             String tituloErro = "";
@@ -100,79 +90,18 @@ public class MainController extends HttpServlet {
             // Verifica qual ação deve ser tomada
             switch (flag) {
                 case "cadastrar":
-                    //Recupera os valores enviados pelo formulário
-                    //id = Integer.parseInt(request.getParameter("id"));
-                    nome = request.getParameter("nome");
-                    cnpj = request.getParameter("cnpj");
-                    telefone = request.getParameter("telefone");
-                    estado = request.getParameter("estado");
-                    cidade = request.getParameter("cidade");
-                    bairro = request.getParameter("bairro");
-                    cep = request.getParameter("cep");
-                    endereco = request.getParameter("endereco");
-                    usuario = request.getParameter("usuario");
-                    email = request.getParameter("email");
-                    senha = request.getParameter("senha");
 
-                    // Cria o objeto e e atribui os dados recebidos
-                    cliente = new Cliente();
-                    cliente.setNome(nome);
-                    cliente.setCnpj(cnpj);
-                    cliente.setTelefone(telefone);
-                    cliente.setEstado(estado);
-                    cliente.setCidade(cidade);
-                    cliente.setBairro(bairro);
-                    cliente.setCep(cep);
-                    cliente.setEndereco(endereco);
-                    cliente.setUsuario(usuario);
-                    cliente.setEmail(email);
-                    cliente.setSenha(senha);
-
-                    // Cria um objeto para receber os campos
-                    campos = new HashMap<>();
-
-                    // Verifica o preenchimento dos campos
-                    campos = cliente.verificaDados();
-
-                    // Percorre a lista (objetos - campos) em busca dos erros
-                    for (String key : campos.keySet()) {
-                        if (campos.get(key).equals("")) {
-                            // monta a mensagem de erro
-                            tituloErro = "<h1>Campo (s) não preenchido (s)!</h1>";
-                            erro = erro + "&rarr; " + String.valueOf(key) + "<br>";
-                        }
-                    }
-
-                    // Se ocorreram erros, envia para página de erro
-                    if (!erro.isEmpty()) {
-                        request.setAttribute("mensagem", tituloErro + erro);
-                        request.getRequestDispatcher("view/erro.jsp").
-                                forward(request, response);
-                        break;
-                    }
-
-                    clienteDAO = new ClienteDAO();
-                    clienteDAO.inserir(cliente);
-
-                    // Cria um atributo para informar sobre  a inclusão
-                    request.setAttribute("mensagem", clienteDAO.toString());
-
-                    // Redireciona para a View
-//                    request.getRequestDispatcher("view/mensagem.jsp").
-//                            forward(request, response);
-                    RequestDispatcher rd = request.getRequestDispatcher("view/cadastrar_cliente.jsp");
-                    rd.forward(request, response);
                     break;
 
                 case "listar":
                     // Busca no model os dados
-                    clienteDAO = new ClienteDAO();
+                    ordemServicoDAO = new OrdemServicoDAO();
 
                     // Coloca todos os clientes em uma lista
-                    clientes = clienteDAO.listar();
+                    ordemServicos = ordemServicoDAO.listar();
 
                     // se não for encontrado nenhum registro, retorna a mensagem
-                    if (clientes.size() == 0) {
+                    if (ordemServicos.size() == 0) {
                         // Cria um atributo com o cliente para ser utilizado na View
                         request.setAttribute("mensagem", "Não há registros para serem listados");
 
@@ -181,10 +110,10 @@ public class MainController extends HttpServlet {
                                 forward(request, response);
                     } else {
                         // Cria um atributo com o aluno para ser utilizado na View
-                        request.setAttribute("listaClientes", clientes);
+                        request.setAttribute("listaOrdemServicos", ordemServicos);
 
                         // Redireciona para a View
-                        request.getRequestDispatcher("view/lista_clientes.jsp").
+                        request.getRequestDispatcher("view/lista_ordem_servicos.jsp").
                                 forward(request, response);
                     }
 
@@ -192,25 +121,25 @@ public class MainController extends HttpServlet {
 
                 case "pesquisar":
                     // Cria um novo cliente
-                    cliente = new Cliente();
+                    ordemServico = new OrdemServico();
 
                     /**
                      * Atribui os valores recuperados do formulário O parâmetro
                      * utilizado "pesquisa" é igual para os três campos, pois
                      * está sendo utilizado o LIKE na instrução SQL do DAO
                      */
-                    cliente.setNome(request.getParameter("pesquisa"));
-                    cliente.setCnpj(request.getParameter("pesquisa"));
-                    cliente.setUsuario(request.getParameter("pesquisa"));
+                    ordemServico.setNomeOS(request.getParameter("pesquisa"));
+                    ordemServico.setCnpjOS(request.getParameter("pesquisa"));
+                    ordemServico.setTipoOS(request.getParameter("pesquisa"));
 
                     // Busca no model (DAO) os dados
-                    clienteDAO = new ClienteDAO();
+                    ordemServicoDAO = new OrdemServicoDAO();
 
                     // Coloca todos os alunos em uma lista
-                    pesquisaCliente = clienteDAO.pesquisar(cliente);
+                    pesquisaOrdemServicos = ordemServicoDAO.pesquisar(ordemServico);
 
                     // se não for encontrado nenhum registro, retorna a mensagem
-                    if (pesquisaCliente.size() == 0) {
+                    if (pesquisaOrdemServicos.size() == 0) {
                         // Cria um atributo com o aluno para ser utilizado na View
                         request.setAttribute("mensagem", "Não há registros para serem listados");
 
@@ -219,69 +148,68 @@ public class MainController extends HttpServlet {
                                 forward(request, response);
                     } else {
                         // Cria um atributo com o aluno para ser utilizado na View
-                        request.setAttribute("listaClientes", pesquisaCliente);
+                        request.setAttribute("listaOrdemServicos", pesquisaOrdemServicos);
 
                         // Redireciona para a View
-                        request.getRequestDispatcher("view/lista_clientes.jsp").
+                        request.getRequestDispatcher("view/lista_ordem_servicos.jsp").
                                 forward(request, response);
                     }
 
                     break;
+
                 case "editar":
 
-                    cliente = new Cliente();
-                    cliente.setId(Integer.parseInt(request.getParameter("idcli")));
+                    ordemServico = new OrdemServico();
+                    ordemServico.setIdOS(Integer.parseInt(request.getParameter("idOS")));
 
                     // Busca no model os dados
-                    clienteDAO = new ClienteDAO();
+                    ordemServicoDAO = new OrdemServicoDAO();
 
                     // Coloca todos os clientes em uma lista
-                    clienteAlteraDAO = clienteDAO.pesquisar(cliente);
+                    ordemServicoAlteraDAO = ordemServicoDAO.pesquisar(ordemServico);
 
                     // Cria um atributo com o cliente para ser utilizado na View
-                    request.setAttribute("listaClientes", clienteAlteraDAO);
+                    request.setAttribute("listaOrdemServicos", ordemServicoAlteraDAO);
 
                     // Redireciona para a View
-                    request.getRequestDispatcher("view/editar.jsp").
+                    request.getRequestDispatcher("view/editar_ordem_servico.jsp").
                             forward(request, response);
 
                     break;
 
                 case "salvar":
                     //Recupera os valores enviados pelo formulário
-                    id = Integer.parseInt(request.getParameter("id"));
-                    nome = request.getParameter("nome");
-                    cnpj = request.getParameter("cnpj");
-                    telefone = request.getParameter("telefone");
-                    estado = request.getParameter("estado");
-                    cidade = request.getParameter("cidade");
-                    bairro = request.getParameter("bairro");
-                    cep = request.getParameter("cep");
-                    endereco = request.getParameter("endereco");
-                    usuario = request.getParameter("usuario");
-                    email = request.getParameter("email");
-                    senha = request.getParameter("senha");
+                    idOS = Integer.parseInt(request.getParameter("idOS"));
+                    dataOS = request.getParameter("dataOS");
+                    tipoOS = request.getParameter("tipoOS");
+                    situacaoOS = request.getParameter("situacaoOS");
+                    nomeOS = request.getParameter("nomeOS");
+                    cnpjOS = request.getParameter("cnpjOS");
+                    telefoneOS = request.getParameter("telefoneOS");
+                    enderecoOS = request.getParameter("enderecoOS");
+                    emailOS = request.getParameter("emailOS");
+                    valorOS = request.getParameter("valorOS");
+                    servicoOS = request.getParameter("servicoOS");
 
                     // Cria o objeto e e atribui os dados recebidos
-                    cliente = new Cliente();
-                    cliente.setId(id);
-                    cliente.setNome(nome);
-                    cliente.setCnpj(cnpj);
-                    cliente.setTelefone(telefone);
-                    cliente.setEstado(estado);
-                    cliente.setCidade(cidade);
-                    cliente.setBairro(bairro);
-                    cliente.setCep(cep);
-                    cliente.setUsuario(usuario);
-                    cliente.setEndereco(endereco);
-                    cliente.setEmail(email);
-                    cliente.setSenha(senha);
+                    ordemServico = new OrdemServico();
+                    ordemServico.setIdOS(idOS);
+                    ordemServico.setDataOS(dataOS);
+                    ordemServico.setTipoOS(tipoOS);
+                    ordemServico.setSituacaoOS(situacaoOS);
+                    ordemServico.setNomeOS(nomeOS);
+                    ordemServico.setCnpjOS(cnpjOS);
+                    ordemServico.setTelefoneOS(telefoneOS);
+                    ordemServico.setEnderecoOS(enderecoOS);
+                    ordemServico.setEmailOS(emailOS);
+                    ordemServico.setValorOS(valorOS);
+                    ordemServico.setServicoOS(servicoOS);
 
                     // Cria um objeto para receber os campos, exceto o RA que é o identificador
                     campos = new HashMap<>();
 
                     // Verifica o preenchimento dos campos
-                    campos = cliente.verificaDados();
+                    campos = ordemServico.verificaDados();
 
                     // Percorre a lista (objetos - campos) em busca dos erros
                     for (String key : campos.keySet()) {
@@ -304,14 +232,14 @@ public class MainController extends HttpServlet {
                      * Repassa os valores dos atributos para o objeto DAO que
                      * irá manipular os dados e gravar no banco
                      */
-                    clienteDAO = new ClienteDAO();
-                    clienteDAO.salvar(cliente);
+                    ordemServicoDAO = new OrdemServicoDAO();
+                    ordemServicoDAO.salvar(ordemServico);
 
                     // Cria um atributo para informar sobre a atualização
-                    request.setAttribute("mensagem", clienteDAO.toString());
+                    request.setAttribute("mensagem", ordemServicoDAO.toString());
 
                     // Redireciona para a View
-                    request.getRequestDispatcher("view/editar.jsp").
+                    request.getRequestDispatcher("view/editar_ordem_servico.jsp").
                             forward(request, response);
 
                     break;
@@ -320,20 +248,20 @@ public class MainController extends HttpServlet {
                     /**
                      * Cria o objeto aluno e atribui o RA para pesquisa
                      */
-                    cliente = new Cliente();
-                    cliente.setId(Integer.parseInt(request.getParameter("idcli")));
+                    ordemServico = new OrdemServico();
+                    ordemServico.setIdOS(Integer.parseInt(request.getParameter("idOS")));
 
                     // Busca no model os dados
-                    clienteDAO = new ClienteDAO();
+                    ordemServicoDAO = new OrdemServicoDAO();
 
                     // Coloca todos os alunos em uma lista
-                    clienteDAO.excluir(cliente);
+                    ordemServicoDAO.excluir(ordemServico);
 
                     // Cria um atributo com o aluno para ser utilizado na View
-                    request.setAttribute("mensagem", clienteDAO.toString());
+                    request.setAttribute("mensagem", ordemServicoDAO.toString());
 
                     // Redireciona para a View
-                    request.getRequestDispatcher("view/lista_clientes.jsp").
+                    request.getRequestDispatcher("view/lista_ordem_servicos.jsp").
                             forward(request, response);
 
                     break;
@@ -341,6 +269,7 @@ public class MainController extends HttpServlet {
         }
     }
 
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -354,8 +283,10 @@ public class MainController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (SQLException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdemServicoController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -372,9 +303,21 @@ public class MainController extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
+
         } catch (SQLException ex) {
-            Logger.getLogger(MainController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(OrdemServicoController.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

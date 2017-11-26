@@ -7,7 +7,7 @@
 <html class="ls-theme-blue">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Clientes</title>
+        <title>Lista de OS</title>
 
         <meta charset="utf-8">
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -114,8 +114,9 @@
             <div class="container-fluid">
                 <h1 class="ls-title-intro ls-ico-users">Editar Registro</h1>
 
-                <a href="view/cadastrar_cliente.jsp" class="ls-btn-primary">Cadastrar novo</a>
-                <a href="MainController?flag=listar" class="ls-btn-primary">Carregar lista</a>
+                <a href="view/cadastrar_cliente.jsp" class="ls-btn-primary ls-ico-user"> Cadastrar novo</a>
+                <a href="OrdemServicoController?flag=listar" class="ls-btn-primary ls-ico-list"> Carregar lista</a>
+                <a href="javascript: window.print();" class="ls-btn-danger ls-ico-book"> Imprimir OS</a>
 
                 <hr>
 
@@ -132,42 +133,87 @@
 
                 </div>
 
-                <form name="cadastro" action="MainController" method="POST" class="ls-form ls-form-horizontal row">
-                    <c:forEach var="cliente" items="${listaClientes}">
+                <form name="cadastro" action="OrdemServicoController" method="POST" class="ls-form ls-form-horizontal row">
+                    <c:forEach var="ordemServico" items="${listaOrdemServicos}">
 
                         <fieldset>
                             <label class="ls-label col-md-1 col-xs-12">
                                 <b class="ls-label-text">ID</b>
-                                <input  disabled="disabled" class="ls-field" type="text" name="id" class="input" value="${cliente.id}">
+                                <input  disabled="disabled" class="ls-field" type="text" name="idOS" class="input" value="${ordemServico.idOS}">
+                            </label>
+
+                            <!--                            <label class="ls-label col-md-2 col-xs-12">
+                                                            <b class="ls-label-text">Situação</b>
+                                                            <input type="text" name="situacaoOS" class="input" value="${ordemServico.situacaoOS}">
+                                                        </label>-->
+
+                            <label class="ls-label col-md-3 col-sm-8">
+                                <b class="ls-label-text">Situação</b>
+                                <div class="ls-custom-select">
+                                    <select name="situacaoOS" class="ls-select">
+                                        <option value="${ordemServico.situacaoOS}">${ordemServico.situacaoOS}</option>
+                                        <option>Aguardando Aprovação</option>
+                                        <option>Entrega confirmada</option>
+                                        <option>Entrega pendente</option>
+                                        <option>Confirmado</option>
+                                        <option>Cancelado</option>
+                                    </select>
+                                </div>
                             </label>
                         </fieldset>
 
                         <fieldset>
                             <label class="ls-label col-md-4 col-xs-12">
-                                <b class="ls-label-text">Nome</b>
-                                <input class="form-control" type="text" name="nome" class="input" value="${cliente.nome}">
+                                <b class="ls-label-text">Data</b>
+                                <input class="form-control" type="text" name="dataOS" class="input" value="${ordemServico.dataOS}">
                             </label>
 
-                            <label class="ls-label col-md-3 col-xs-12">
+                            <!--<label class="ls-label col-md-3 col-xs-12">-->
+                            <!--<b class="ls-label-text">Tipo</b>-->
+                            <!--<input type="text" name="tipoOS" class="input" value="${ordemServico.tipoOS}">-->
+                            <label class="ls-label col-md-3 col-sm-8">
+                                <b class="ls-label-text">Tipo</b>
+                                <div class="ls-custom-select">
+                                    <select name="tipoOS" class="ls-select">
+                                        <option value="${ordemServico.tipoOS}">${ordemServico.tipoOS}</option>
+                                        <option>Orçamento</option>
+                                        <option>Abertura de OS</option>
+                                    </select>
+                                </div>
+                            </label>
+                            <!--</label>-->
+                        </fieldset>
+
+                        <fieldset>
+                            <label class="ls-label col-md-5 col-xs-12">
+                                <b class="ls-label-text">Nome</b>
+                                <input type="text" name="nomeOS" class="input" value="${ordemServico.nomeOS}">
+                            </label>
+
+                            <label class="ls-label col-md-2 col-xs-12">
                                 <b class="ls-label-text">CNPJ</b>
-                                <input type="text" name="cnpj" class="input" value="${cliente.cnpj}">
+                                <input type="text" name="cnpjOS" class="input" value="${ordemServico.cnpjOS}">
                             </label>
                         </fieldset>
+
+                        <hr>
 
                         <fieldset>
                             <label class="ls-label col-md-2 col-xs-12">
                                 <b class="ls-label-text">Telefone</b>
-                                <input type="text" name="telefone" class="input" value="${cliente.telefone}">
+                                <input type="text" name="telefoneOS" class="input" value="${ordemServico.telefoneOS}">
                             </label>
 
-                            <label class="ls-label col-md-4 col-xs-12">
-                                <b class="ls-label-text">Cidade</b>
-                                <input type="text" name="cidade" class="input" value="${cliente.cidade}">
+                            <label class="ls-label col-md-3 col-xs-12">
+                                <b class="ls-label-text">Endereço</b>
+                                <input type="text" name="enderecoOS" class="input" value="${ordemServico.enderecoOS}">
                             </label>
+                        </fieldset>
 
-                            <label class="ls-label col-md-1 col-xs-12">
-                                <b class="ls-label-text">Estado</b>
-                                <input type="text" name="estado" class="input" value="${cliente.estado}">
+                        <fieldset>
+                            <label class="ls-label col-md-5 col-xs-12">
+                                <b class="ls-label-text">E-mail</b>
+                                <input type="text" name="emailOS" class="input" value="${ordemServico.emailOS}">
                             </label>
                         </fieldset>
 
@@ -175,47 +221,13 @@
 
                         <fieldset>
                             <label class="ls-label col-md-2 col-xs-12">
-                                <b class="ls-label-text">CEP</b>
-                                <input type="text" name="cep" class="input" value="${cliente.cep}">
+                                <b class="ls-label-text">Valor</b>
+                                <input type="text" name="valorOS" class="input" value="${ordemServico.valorOS}">
                             </label>
-
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">Bairro</b>
-                                <input type="text" name="bairro" class="input" value="${cliente.bairro}">
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-
 
                             <label class="ls-label col-md-5 col-xs-12">
-                                <b class="ls-label-text">Endereço</b>
-                                <input type="text" name="endereco" class="input" value="${cliente.endereco}">
-                            </label>
-                        </fieldset>
-
-                        <hr>
-
-                        <fieldset>
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">Usuário</b>
-                                <input type="text" name="usuario" class="input" value="${cliente.usuario}">
-                            </label>
-
-                            <label class="ls-label col-md-3 col-xs-12">
-
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">E-mail</b>
-                                <input type="text" name="email" class="input" value="${cliente.email}">
-                            </label>
-
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">Senha</b>
-                                <input type="text" name="senha" class="input" value="${cliente.senha}">
+                                <b class="ls-label-text">Serviço</b>
+                                <input type="text" name="servicoOS" class="input" value="${ordemServico.servicoOS}">
                             </label>
 
                         </fieldset>
@@ -223,10 +235,10 @@
                         <div class="ls-actions-btn">
                             <label>&nbsp;</label><input type="submit" name="btCadastrar" value="Salvar" style="width: 120px;" class="ls-btn-primary">
                             <input type="hidden" name="flag" value="salvar">
-                            <input type="hidden" name="id" value="${cliente.id}">
+                            <input type="hidden" name="idOS" value="${ordemServico.idOS}">
                             <!--<input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao">-->
-                            <!-- <td><a href="MainController?flag=editar&idcli=${cliente.id}">Editar</a></td>
-                            <td><a href="MainController?flag=excluir&idcli=${cliente.id}">Excluir</a></td>-->
+                            <!-- <td><a href="MainController?flag=editar&idcli=${ordemServico.idOS}">Editar</a></td>
+                            <td><a href="MainController?flag=excluir&idcli=${ordemServico.idOS}">Excluir</a></td>-->
                         </div>
 
 

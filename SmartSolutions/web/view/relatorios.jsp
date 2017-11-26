@@ -90,6 +90,7 @@
                         <li><a href="LoginController" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
                         <li><a href="CadastrarClienteController" class="ls-ico-user-add" title="Clientes">Cadastro</a></li>
                         <li><a href="MainController?flag=listar" class="ls-ico-users" title="Clientes">Clientes</a></li>
+                        <li><a href="OrdemServicoController?flag=listar" class="ls-ico-text2" title="Ordem de Serviço">Ordem Serviço</a></li>
                         <!--<li><a href="pesquisar_cliente.html" class="ls-ico-search" title="Clientes">Pesquisa</a></li>-->
                         <li><a href="RelatorioController" class="ls-ico-stats" title="Relatórios da revenda">Relatórios da revenda</a></li>
                         <li>

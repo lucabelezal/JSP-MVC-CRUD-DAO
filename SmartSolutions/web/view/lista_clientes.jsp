@@ -92,6 +92,7 @@
                         <li><a href="LoginController" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
                         <li><a href="CadastrarClienteController" class="ls-ico-user-add" title="Clientes">Cadastro</a></li>
                         <li><a href="MainController?flag=listar" class="ls-ico-users" title="Clientes">Clientes</a></li>
+                        <li><a href="OrdemServicoController?flag=listar" class="ls-ico-text2" title="Ordem de Serviço">Ordem Serviço</a></li>
                         <!--<li><a href="pesquisar_cliente.html" class="ls-ico-search" title="Clientes">Pesquisa</a></li>-->
                         <li><a href="RelatorioController" class="ls-ico-stats" title="Relatórios da revenda">Relatórios da revenda</a></li>
                         <li>
@@ -113,8 +114,9 @@
             <div class="container-fluid">
                 <h1 class="ls-title-intro ls-ico-users">Clientes</h1>
 
-                <a href="view/cadastrar_cliente.jsp" class="ls-btn-primary">Cadastrar novo</a>
-                <a href="MainController?flag=listar" class="ls-btn-primary">Carregar lista</a>
+                <a href="view/cadastrar_cliente.jsp" class="ls-btn-primary ls-ico-user"> Cadastrar novo</a>
+                <a href="MainController?flag=listar" class="ls-btn-primary ls-ico-list"> Carregar lista</a>
+                <a href="javascript: window.print();" class="ls-btn ls-ico-book"> Imprimir</a>
 
                 <div class="alert alert-success">
                     <input type="hidden" id="mensagem" value="<c:out value="${mensagem}"/>"/>
@@ -157,7 +159,7 @@
 
                         <label class="ls-label" role="search">
                             <b class="ls-label-text ls-hidden-accessible">Nome do cliente</b>
-                            <input type="text" name="pesquisa" class="input"><br>
+                            <input type="text" name="pesquisa" class="input" placeholder="Nome, CNPJ, Usuário"><br>
                         </label>
                         <!--<hr>-->
                         <div class="ls-actions-btn">
@@ -206,8 +208,8 @@
                                 <!--<td>${cliente.email}</td>-->
                                 <!--<td>${cliente.senha}</td>-->
 
-                                <td><a href="MainController?flag=editar&idcli=${cliente.id}">Editar</a></td>
-                                <td><a href="MainController?flag=excluir&idcli=${cliente.id}">Excluir</a></td>
+                                <td><a href="MainController?flag=editar&idcli=${cliente.id}" class="ls-btn ls-ico-edit-admin">Editar</a></td>
+                                <td><a href="MainController?flag=excluir&idcli=${cliente.id}" class="ls-btn-danger ls-ico-remove">Excluir</a></td>
                             </tr>
                         </c:forEach>
 

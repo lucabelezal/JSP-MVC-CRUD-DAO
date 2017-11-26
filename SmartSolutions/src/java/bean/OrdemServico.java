@@ -15,76 +15,103 @@ import java.util.Map;
 public class OrdemServico {
 
     private int idOS;
-    private int idCliente;
     private String dataOS;
-    private String equipamento;
-    private String defeito;
-    private String servico;
-    private String tecnico;
-    private String valor;
+    private String tipoOS;
+    private String situacaoOS;
+    private String nomeOS;
+    private String cnpjOS;
+    private String telefoneOS;
+    private String enderecoOS;
+    private String emailOS;
+    private String valorOS;
+    private String servicoOS;
 
     public int getIdOS() {
-	return idOS;
+        return idOS;
     }
 
     public void setIdOS(int idOS) {
-	this.idOS = idOS;
-    }
-
-    public int getIdCliente() {
-	return idCliente;
-    }
-
-    public void setIdCliente(int idCliente) {
-	this.idCliente = idCliente;
+        this.idOS = idOS;
     }
 
     public String getDataOS() {
-	return dataOS;
+        return dataOS;
     }
 
     public void setDataOS(String dataOS) {
-	this.dataOS = dataOS;
+        this.dataOS = dataOS;
     }
 
-    public String getEquipamento() {
-	return equipamento;
+    public String getTipoOS() {
+        return tipoOS;
     }
 
-    public void setEquipamento(String equipamento) {
-	this.equipamento = equipamento;
+    public void setTipoOS(String tipoOS) {
+        this.tipoOS = tipoOS;
     }
 
-    public String getDefeito() {
-	return defeito;
+    public String getSituacaoOS() {
+        return situacaoOS;
     }
 
-    public void setDefeito(String defeito) {
-	this.defeito = defeito;
+    public void setSituacaoOS(String situacaoOS) {
+        this.situacaoOS = situacaoOS;
     }
 
-    public String getServico() {
-	return servico;
+    public String getNomeOS() {
+        return nomeOS;
     }
 
-    public void setServico(String servico) {
-	this.servico = servico;
+    public void setNomeOS(String nomeOS) {
+        this.nomeOS = nomeOS;
     }
 
-    public String getTecnico() {
-	return tecnico;
+    public String getCnpjOS() {
+        return cnpjOS;
     }
 
-    public void setTecnico(String tecnico) {
-	this.tecnico = tecnico;
+    public void setCnpjOS(String cnpjOS) {
+        this.cnpjOS = cnpjOS;
     }
 
-    public String getValor() {
-	return valor;
+    public String getTelefoneOS() {
+        return telefoneOS;
     }
 
-    public void setValor(String valor) {
-	this.valor = valor;
+    public void setTelefoneOS(String telefoneOS) {
+        this.telefoneOS = telefoneOS;
+    }
+
+    public String getEnderecoOS() {
+        return enderecoOS;
+    }
+
+    public void setEnderecoOS(String enderecoOS) {
+        this.enderecoOS = enderecoOS;
+    }
+
+    public String getEmailOS() {
+        return emailOS;
+    }
+
+    public void setEmailOS(String emailOS) {
+        this.emailOS = emailOS;
+    }
+
+    public String getValorOS() {
+        return valorOS;
+    }
+
+    public void setValorOS(String valorOS) {
+        this.valorOS = valorOS;
+    }
+
+    public String getServicoOS() {
+        return servicoOS;
+    }
+
+    public void setServicoOS(String servicoOS) {
+        this.servicoOS = servicoOS;
     }
 
     /**
@@ -94,15 +121,15 @@ public class OrdemServico {
      */
     public Map<String, String> verificaDados() {
 
-	Map<String, String> campos = new HashMap<>();
+        Map<String, String> campos = new HashMap<>();
 
-	if (equipamento.isEmpty()) {
-	    campos.put("equipamento", "");
-	} else {
-	    campos.put("equipamento", equipamento);
-	}
+        if (cnpjOS.isEmpty()) {
+            campos.put("cnpjOS", "");
+        } else {
+            campos.put("cnpjOS", cnpjOS);
+        }
 
-	return campos;
+        return campos;
     }
 
 }

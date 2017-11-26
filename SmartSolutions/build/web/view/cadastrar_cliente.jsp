@@ -94,6 +94,7 @@
                         <li><a href="LoginController" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
                         <li><a href="CadastrarClienteController" class="ls-ico-user-add" title="Clientes">Cadastro</a></li>
                         <li><a href="MainController?flag=listar" class="ls-ico-users" title="Clientes">Clientes</a></li>
+                        <li><a href="OrdemServicoController?flag=listar" class="ls-ico-text2" title="Ordem de Serviço">Ordem Serviço</a></li>
                         <!--<li><a href="pesquisar_cliente.html" class="ls-ico-search" title="Clientes">Pesquisa</a></li>-->
                         <li><a href="RelatorioController" class="ls-ico-stats" title="Relatórios da revenda">Relatórios da revenda</a></li>
                         <li>
@@ -217,7 +218,7 @@
                             <label>&nbsp;</label><input type="submit" name="btCadastrar" value="Cadastrar" class="ls-btn-primary" style="width: 110px;">
 
                             <input type="hidden" name="flag" value="cadastrar">
-                            <a href="MainController?flag=listar" style="margin-left: 30px;" class="ls-btn-logout">Carregar lista</a>
+                            <a href="MainController?flag=listar" style="margin-left: 30px;" class="ls-btn ls-ico-list"> Carregar lista</a>
 
                             <!--<input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao btn btn-danger">-->
 

@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="bean.Usuario"%>
 <%@page import="java.util.List"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html class="ls-theme-blue">
@@ -93,6 +94,7 @@
                         <li><a href="LoginController" class="ls-ico-dashboard" title="Dashboard">Dashboard</a></li>
                         <li><a href="CadastrarClienteController" class="ls-ico-user-add" title="Clientes">Cadastro</a></li>
                         <li><a href="MainController?flag=listar" class="ls-ico-users" title="Clientes">Clientes</a></li>
+                        <li><a href="OrdemServicoController?flag=listar" class="ls-ico-text2" title="Ordem de Serviço">Ordem Serviço</a></li>
                         <!--<li><a href="pesquisar_cliente.html" class="ls-ico-search" title="Clientes">Pesquisa</a></li>-->
                         <li><a href="/locawebstyle/documentacao/exemplos/painel1/stats" class="ls-ico-stats" title="Relatórios da revenda">Relatórios da revenda</a></li>
                         <li>
@@ -207,7 +209,7 @@
                 <div class="ls-box">
                     <header class="ls-info-header">
                         <h2 class="ls-title-3">Clientes que mais contrataram</h2>
-                        <a href="#" class="ls-btn ls-btn-sm">Ver mais relatórios</a>
+                        <a href="RelatorioController" class="ls-btn ls-btn-sm">Ver mais relatórios</a>
                     </header>
 
                     <div id="panel-charts"></div>
@@ -219,7 +221,7 @@
                         <div class="ls-box">
                             <header class="ls-info-header">
                                 <h2 class="ls-title-3">Clientes que mais contrataram</h2>
-                                <a href="#" class="ls-btn ls-btn-sm">Ver todos</a>
+                                <a href="MainController?flag=listar" class="ls-btn ls-btn-sm">Ver todos</a>
                             </header>
 
                             <table class="ls-table">
@@ -229,16 +231,16 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="/locawebstyle/documentacao/exemplos/painel1/client">João da Silva</a> </td>
-                                        <td>10.04.2014</td>
+                                        <td><a href="MainController?flag=listar">Alex Sistemas de Segurança - ME</a> </td>
+                                        <td>14.07.2014</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="/locawebstyle/documentacao/exemplos/painel1/client">João da Silva</a> </td>
-                                        <td>10.04.2014</td>
+                                        <td><a href="MainController?flag=listar">Cardoso Sistemas de Segurança - ME</a> </td>
+                                        <td>11.07.2014</td>
                                     </tr>
                                     <tr>
-                                        <td><a href="/locawebstyle/documentacao/exemplos/painel1/client">João da Silva</a> </td>
-                                        <td>10.04.2014</td>
+                                        <td><a href="MainController?flag=listar">Roberto Sistemas de Segurança - ME</a> </td>
+                                        <td>09.03.2014</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -253,7 +255,7 @@
                         <div class="ls-box">
                             <header class="ls-info-header">
                                 <h2 class="ls-title-3">Clientes bloqueados por bounce</h2>
-                                <a href="/locawebstyle/documentacao/exemplos/painel1/clients" class="ls-btn ls-btn-sm">Ver todos</a>
+                                <a href="MainController?flag=listar" class="ls-btn ls-btn-sm">Ver todos</a>
                             </header>
 
                             <table class="ls-table">
@@ -262,14 +264,20 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href="/locawebstyle/documentacao/exemplos/painel1/client">João da Silva</a> </td>
+                                        <td><a href="MainController?flag=listar">Rocha Sistemas TI - ME</a> </td>
                                     </tr>
                                     <tr>
-                                        <td><a href="/locawebstyle/documentacao/exemplos/painel1/client">João da Silva</a> </td>
+                                        <td><a href="MainController?flag=listar">Alex Sistemas de Segurança - ME</a> </td>
                                     </tr>
                                     <tr>
-                                        <td><a href="/locawebstyle/documentacao/exemplos/painel1/client">João da Silva</a> </td>
+                                        <td><a href="MainController?flag=listar">Roberto Sistemas de Segurança - ME</a> </td>
                                     </tr>
+
+                                    <!--                                <c:forEach var="cliente" items="${listaClientes}">
+                                                                        <tr>
+                                                                            <td><a href="MainController?flag=editar&idcli=${cliente.id}">${cliente.nome}</a></td>
+                                                                        </tr>
+                                    </c:forEach>-->
                                 </tbody>
                             </table>
                         </div>

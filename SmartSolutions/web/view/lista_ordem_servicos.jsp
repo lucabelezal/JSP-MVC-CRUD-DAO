@@ -7,7 +7,7 @@
 <html class="ls-theme-blue">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lista de Clientes</title>
+        <title>Lista de OS </title>
 
         <meta charset="utf-8">
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
@@ -112,12 +112,11 @@
 
         <main class="ls-main ">
             <div class="container-fluid">
-                <h1 class="ls-title-intro ls-ico-users">Editar Registro</h1>
+                <h1 class="ls-title-intro ls-ico-users">Ordem de Serviço</h1>
 
-                <a href="view/cadastrar_cliente.jsp" class="ls-btn-primary">Cadastrar novo</a>
-                <a href="MainController?flag=listar" class="ls-btn-primary">Carregar lista</a>
-
-                <hr>
+                <a href="view/cadastrar_cliente.jsp" class="ls-btn-primary ls-ico-user"> Cadastrar novo</a>
+                <a href="MainController?flag=listar" class="ls-btn-primary ls-ico-list"> Carregar lista</a>
+                <a href="javascript: window.print();" class="ls-btn ls-ico-book"> Imprimir</a>
 
                 <div class="alert alert-success">
                     <input type="hidden" id="mensagem" value="<c:out value="${mensagem}"/>"/>
@@ -132,107 +131,119 @@
 
                 </div>
 
-                <form name="cadastro" action="MainController" method="POST" class="ls-form ls-form-horizontal row">
-                    <c:forEach var="cliente" items="${listaClientes}">
+                <div class="ls-box-filter">
+                    <form action="" class="ls-form ls-form-inline ls-float-left">
+                        <label class="ls-label col-md-6 col-sm-8">
+                            <b class="ls-label-text">Status</b>
+                            <div class="ls-custom-select ls-field-sm">
+                                <select name="" class="ls-select">
+                                    <option>Todos</option>
+                                    <option>Ativos</option>
+                                    <option>Desativados</option>
+                                </select>
+                            </div>
+                        </label>
+                    </form>
 
-                        <fieldset>
-                            <label class="ls-label col-md-1 col-xs-12">
-                                <b class="ls-label-text">ID</b>
-                                <input  disabled="disabled" class="ls-field" type="text" name="id" class="input" value="${cliente.id}">
-                            </label>
-                        </fieldset>
+                    <!--<form  action="" class="ls-form ls-form-inline ls-float-right">
+                                            <label class="ls-label" role="search">
+                                                <b class="ls-label-text ls-hidden-accessible">Nome do cliente</b>
+                                                <input type="text" id="q" name="q" aria-label="Faça sua busca por cliente" placeholder="Nome do cliente" required="" class="ls-field-sm">
+                                            </label>
+                                            <div class="ls-actions-btn">
+                                                <input type="submit" value="Buscar" class="ls-btn ls-btn-sm" title="Buscar">
+                                            </div>
+                                        </form>-->
 
-                        <fieldset>
-                            <label class="ls-label col-md-4 col-xs-12">
-                                <b class="ls-label-text">Nome</b>
-                                <input class="form-control" type="text" name="nome" class="input" value="${cliente.nome}">
-                            </label>
+                    <form name="pesquisa" action="OrdemServicoController" method="post" class="ls-form ls-form-inline ls-float-right">
 
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">CNPJ</b>
-                                <input type="text" name="cnpj" class="input" value="${cliente.cnpj}">
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <label class="ls-label col-md-2 col-xs-12">
-                                <b class="ls-label-text">Telefone</b>
-                                <input type="text" name="telefone" class="input" value="${cliente.telefone}">
-                            </label>
-
-                            <label class="ls-label col-md-4 col-xs-12">
-                                <b class="ls-label-text">Cidade</b>
-                                <input type="text" name="cidade" class="input" value="${cliente.cidade}">
-                            </label>
-
-                            <label class="ls-label col-md-1 col-xs-12">
-                                <b class="ls-label-text">Estado</b>
-                                <input type="text" name="estado" class="input" value="${cliente.estado}">
-                            </label>
-                        </fieldset>
-
-                        <hr>
-
-                        <fieldset>
-                            <label class="ls-label col-md-2 col-xs-12">
-                                <b class="ls-label-text">CEP</b>
-                                <input type="text" name="cep" class="input" value="${cliente.cep}">
-                            </label>
-
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">Bairro</b>
-                                <input type="text" name="bairro" class="input" value="${cliente.bairro}">
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-
-
-                            <label class="ls-label col-md-5 col-xs-12">
-                                <b class="ls-label-text">Endereço</b>
-                                <input type="text" name="endereco" class="input" value="${cliente.endereco}">
-                            </label>
-                        </fieldset>
-
-                        <hr>
-
-                        <fieldset>
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">Usuário</b>
-                                <input type="text" name="usuario" class="input" value="${cliente.usuario}">
-                            </label>
-
-                            <label class="ls-label col-md-3 col-xs-12">
-
-                            </label>
-                        </fieldset>
-
-                        <fieldset>
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">E-mail</b>
-                                <input type="text" name="email" class="input" value="${cliente.email}">
-                            </label>
-
-                            <label class="ls-label col-md-3 col-xs-12">
-                                <b class="ls-label-text">Senha</b>
-                                <input type="text" name="senha" class="input" value="${cliente.senha}">
-                            </label>
-
-                        </fieldset>
-
+                        <label class="ls-label" role="search">
+                            <b class="ls-label-text ls-hidden-accessible">Nome do cliente</b>
+                            <input type="text" name="pesquisa" class="input" placeholder="Nome, CNPJ, Tipo"><br>
+                        </label>
+                        <!--<hr>-->
                         <div class="ls-actions-btn">
-                            <label>&nbsp;</label><input type="submit" name="btCadastrar" value="Salvar" style="width: 120px;" class="ls-btn-primary">
-                            <input type="hidden" name="flag" value="salvar">
-                            <input type="hidden" name="id" value="${cliente.id}">
-                            <!--<input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao">-->
-                            <!-- <td><a href="MainController?flag=editar&idcli=${cliente.id}">Editar</a></td>
-                            <td><a href="MainController?flag=excluir&idcli=${cliente.id}">Excluir</a></td>-->
+                            <!--<input type="submit" value="Buscar" class="ls-btn ls-btn-sm" title="Buscar">-->
+                            <input type="submit" name="btPesquisar" value="Pesquisar" class="ls-btn ls-btn-sm">
+                            <input type="hidden" name="flag" value="pesquisar">
                         </div>
+                        <!--<input type="button" name="btVoltar" onclick="history.go(-1);" value="Voltar" class="botao btn btn-danger">-->
+
+                    </form>
+                </div>
+
+                <table class="ls-table">
+                    <thead>
+                        <tr>
+                            <!--<th class="ls-txt-center">ID</th>-->
+                            <!--<th class="ls-txt-center">DATA</th>-->
+                            <th class="ls-txt-center">TIPO</th>
+                            <th class="ls-txt-center">SITUAÇÃO</th>
+                            <th class="ls-txt-center">NOME</th>
+                            <th class="ls-txt-center">CNPJ</th>
+                            <!--<th class="ls-txt-center">TELEFONE</th>-->
+                            <!--<th class="ls-txt-center">ENDEREÇO</th>-->
+                            <!--<th class="ls-txt-center">E-MAIL</th>-->
+                            <th class="ls-txt-center">VALOR</th>
+                            <th class="ls-txt-center">SERVIÇO</th>
+                            <th style="width: 80px;"></th>
+                            <th style="width: 80px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <c:forEach var="ordemServico" items="${listaOrdemServicos}">
+                            <tr>
+
+                                <!--<td>${ordemServico.idOS}</td>-->
+                                <!--<td>${ordemServico.dataOS}</td>-->
+                                <td>${ordemServico.tipoOS}</td>
+                                <td>${ordemServico.situacaoOS}</td>
+                                <td>${ordemServico.nomeOS}</td>
+                                <td>${ordemServico.cnpjOS}</td>
+                                <!--<td>${ordemServico.telefoneOS}</td>-->
+                                <!--<td>${ordemServico.enderecoOS}</td>-->
+                                <!--<td>${ordemServico.emailOS}</td>-->
+                                <td>${ordemServico.valorOS}</td>
+                                <td>${ordemServico.servicoOS}</td>
 
 
+                                <td><a href="OrdemServicoController?flag=editar&idOS=${ordemServico.idOS}" class="ls-btn ls-ico-edit-admin">Editar</a></td>
+                                <td><a href="OrdemServicoController?flag=excluir&idOS=${ordemServico.idOS}" class="ls-btn-danger ls-ico-remove">Excluir</a></td>
+                            </tr>
+                        </c:forEach>
 
-                    </c:forEach>
-                </form>
+                    </tbody>
+                </table>
+
+                <div class="ls-pagination-filter">
+                    <ul class="ls-pagination">
+                        <li><a href="#">« Anterior</a></li>
+                        <li class="ls-active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#" class="hidden-xs">4</a></li>
+                        <li><a href="#" class="hidden-xs">5</a></li>
+                        <li><a href="#">Próximo »</a></li>
+                    </ul>
+
+                    <div class="ls-filter-view">
+                        <label for="">
+                            Exibir
+                            <div class="ls-custom-select ls-field-sm">
+                                <select name="" id="">
+                                    <option value="10">10</option>
+                                    <option value="30">30</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                            ítens por página
+                        </label>
+                    </div>
+                </div>
+
+
             </div>
 
             <footer class="ls-footer" role="contentinfo">
